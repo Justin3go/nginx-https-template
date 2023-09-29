@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:stable-alpine      # 指定服务镜像
+    container_name: nginx_https    # 容器名称
+    restart: always                 # 重启方式
+    ports:                          # 映射端口
+      - "80:80"
+      - "443:443"
+    volumes:                        # 挂载数据卷
+      - /etc/localtime:/etc/localtime
+      - /root/repos/nginx-https-template/conf.d:/etc/nginx/conf.d
+      - /root/repos/nginx-https-template/logs:/var/log/nginx
+      - /root/repos/nginx-https-template/cert:/etc/nginx/cert
