@@ -4,6 +4,10 @@
 
 一个基于`nginx + docker`的`https`模板，可以快速部署`https`网站🚀🚀🚀
 
+## 前提条件
+
+你至少并且也只需要拥有docker环境
+
 ## 安装
 
 1. 进入你的`repos`目录，可以为任意目录（不过后续可能要稍做修改），这里以`/root/repos/`为例，如果没有`repos`目录，可以创建一个。然后`clone`本项目
@@ -18,7 +22,7 @@ cd nginx-https-template
 
 ```
 
-2. 替换`cert/`下的证书为你的证书，格式为`your-domain.key`和`your-domain.pem`，比如我的域名是`justin3go.com`，那么我的证书就是`plane.justin3go.com.key`和`justin3go.com.pem`
+2. 替换`cert/`下的证书为你的证书，格式为`your-domain.key`和`your-domain.pem`，比如我的域名是`justin3go.com`，那么我的证书就是`justin3go.com.key`和`justin3go.com.pem`
 3. 运行脚本`./scripts/replace-domain.sh --domain=your-domain`
 
 ```shell
@@ -26,8 +30,10 @@ sudo chmod -R +x ./scripts # 设置脚本权限
 ./scripts/replace-domain.sh --domain=your-domain # 运行脚本替换域名
 ```
 
-3. 如果在第一步中你使用的自定义目录，则修改`docker-compose.yml`中的根目录为你的目录，默认为`/root/repos/`
-4. 启动容器
+> 注意：默认`https`转发的是`80`端口，如果你的网站不是`80`端口，需要修改`/conf.d/default.conf`中的`proxy_pass`为你的端口
+
+4. 如果在第一步中你使用的自定义目录，则修改`docker-compose.yml`中的根目录为你的目录，默认为`/root/repos/`
+5. 启动容器
 
 ```shell
 ./scripts/run.sh
