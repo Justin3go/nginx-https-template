@@ -1,0 +1,5 @@
+/cert/*
+!/cert/your-domain.key
+!/cert/your-domain.pem
+
+/conf.d/default.conf
